@@ -1,7 +1,7 @@
 /* PricingSection.css */
 .pricing-section {
     padding: 6rem 1rem;
-    background-color: #F8FAFC;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FB 100%);
     /* Very light grey background for contrast with white cards */
 }
 
@@ -51,8 +51,9 @@
 .pricing-card:hover {
     border-color: #F97316;
     /* Safety Orange */
-    box-shadow: 0 20px 40px -10px rgba(249, 115, 22, 0.15);
+    box-shadow: var(--shadow-safety-glow);
     transform: translateY(-4px);
+    z-index: 10;
 }
 
 /* The Hero Card (Center) */
@@ -108,7 +109,7 @@
     /* Technical look */
     font-size: 3rem;
     font-weight: 700;
-    color: #0F172A;
+    color: #F97316;
     line-height: 1;
     letter-spacing: -0.05em;
 }
