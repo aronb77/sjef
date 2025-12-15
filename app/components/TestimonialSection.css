@@ -1,0 +1,118 @@
+/* TestimonialSection.css */
+.testimonial-section {
+    padding: 8rem 2rem;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FB 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 5rem;
+}
+
+.testimonial-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-inter, sans-serif);
+}
+
+.testimonial-subtitle {
+    font-size: 1.125rem;
+    color: #64748B;
+}
+
+/* Masonry Grid Layout */
+.masonry-grid {
+    column-count: 1;
+    /* Mobile default */
+    column-gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .masonry-grid {
+        column-count: 2;
+    }
+}
+
+/* Field Report Card */
+.report-card {
+    background: #F7F9FC;
+    /* Very light grey / technical */
+    border: 1px solid #E2E8F0;
+    /* Thin technical border */
+    border-radius: 4px;
+    /* Sharp corners for industrial feel */
+    padding: 2rem;
+    margin-bottom: 2rem;
+    /* Spacing for masonry items */
+    break-inside: avoid;
+    /* Prevent split across columns */
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effect: Lift & Glow */
+.report-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-safety-glow);
+    border-color: rgba(249, 115, 22, 0.4);
+    z-index: 10;
+}
+
+/* Header: Meta Data */
+.report-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 1rem;
+}
+
+.meta-info {
+    font-family: 'Roboto Mono', monospace;
+    /* Logbook style */
+    font-size: 0.75rem;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.meta-icon {
+    color: #475569;
+    /* Dark Grey WhatsApp icon */
+    opacity: 0.5;
+}
+
+/* Body: The Quote */
+.report-text {
+    font-family: var(--font-inter, sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Parallax Effect (Simulated via staggered margins) */
+@media (min-width: 768px) {
+
+    /* Shift the second column down slightly to create asymmetry */
+    .masonry-grid {
+        padding-top: 2rem;
+    }
+
+    .report-card:nth-child(even) {
+        transform: translateY(2rem);
+    }
+
+    .report-card:nth-child(even):hover {
+        transform: translateY(2rem) scale(1.02);
+    }
+}

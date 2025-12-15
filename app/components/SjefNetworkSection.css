@@ -1,0 +1,362 @@
+/* SjefNetworkSection.css */
+.sjef-network-section {
+    background-color: #FFFFFF;
+    padding: 6rem 2rem;
+    overflow: hidden;
+}
+
+.network-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+/* --- Left Column: Visual Diagram --- */
+.network-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 500px;
+    /* Fixed height for the diagram area */
+    background: radial-gradient(circle at center, rgba(249, 115, 22, 0.03) 0%, transparent 70%);
+    perspective: 1000px;
+    /* For Parallax */
+}
+
+.network-diagram {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    /* Ensure decent size for the SVG coordinate system (600x600) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+    /* Smooth mouse follow */
+}
+
+/* Central Hub */
+.hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: #F97316;
+    /* Safety Orange */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(249, 115, 22, 0.3);
+    z-index: 10;
+}
+
+.hub svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Hub Pulse Ring */
+.hub::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #F97316;
+    animation: hub-pulse 2s infinite;
+}
+
+/* Floating Nodes */
+.node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    z-index: 5;
+    color: #4A5568;
+    /* Positions are handled via inline-styles/parralax mostly overriden, 
+       but we keep defaults just in case */
+}
+
+/* Input Nodes (Left) */
+.node.input-1 {
+    /* Camera */
+    top: 20%;
+    left: 15%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.node.input-2 {
+    /* Mic */
+    bottom: 20%;
+    left: 15%;
+    animation: float 6s ease-in-out infinite 2s;
+}
+
+/* Output Nodes (Right) */
+.node.output-1 {
+    /* PDF */
+    top: 20%;
+    right: 15%;
+    animation: float 6s ease-in-out infinite 1s;
+}
+
+.node.output-2 {
+    /* Cloud */
+    bottom: 20%;
+    right: 15%;
+    animation: float 6s ease-in-out infinite 3s;
+}
+
+/* --- Right Column: Content --- */
+.network-content {
+    flex: 1;
+}
+
+.section-label {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #FFF7ED;
+    /* Pale Orange */
+    color: #F97316;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 1px solid #FFEDD5;
+}
+
+.network-title {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1A202C;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.network-subtitle {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #4A5568;
+    margin-bottom: 1.5rem;
+}
+
+.network-description {
+    color: #718096;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.btn-tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #F7FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 100px;
+    color: #4A5568;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-tech::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #F97316;
+    border-radius: 50%;
+}
+
+.btn-tech:hover {
+    background: #EDF2F7;
+    border-color: #CBD5E0;
+    color: #1A202C;
+}
+
+/* --- Animations & Entrance --- */
+
+@keyframes hub-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes hub-enter {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes beam-flow {
+    0% {
+        stroke-dashoffset: 200;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes line-draw {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.2;
+    }
+}
+
+/* Scroll Entrance Classes */
+.animate-on-scroll .hub {
+    opacity: 0;
+}
+
+.in-view .hub {
+    animation: hub-enter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, hub-pulse 4s ease-in-out infinite 0.8s;
+}
+
+.animate-on-scroll .node {
+    opacity: 0;
+}
+
+.in-view .node {
+    /* Combine pop-in (entrance) with float (idle) */
+    /* Note: We need to handle this carefully to avoid overwriting the transform. 
+       Actually, separate elements or wrappers are safer, but for now let's chain. */
+    animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, float 6s ease-in-out infinite 0.6s;
+}
+
+/* Staggered Delays for Node Entrance */
+.in-view .node.input-1 {
+    animation-delay: 0.4s, 1s;
+}
+
+.in-view .node.input-2 {
+    animation-delay: 0.5s, 1.5s;
+}
+
+.in-view .node.output-1 {
+    animation-delay: 0.6s, 2s;
+}
+
+.in-view .node.output-2 {
+    animation-delay: 0.7s, 2.5s;
+}
+
+/* Line Animations */
+.connector-base {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.in-view .connector-base {
+    animation: line-draw 1.5s ease-out forwards 0.2s;
+}
+
+.connector-beam {
+    stroke-dasharray: 10 200;
+    /* Short dash aka 'packet', long gap */
+    stroke-dashoffset: 200;
+    opacity: 0;
+}
+
+.in-view .connector-beam {
+    opacity: 1;
+    animation: beam-flow 3s linear infinite 1.5s;
+    /* Start processing after lines draw */
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .network-container {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .network-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .network-visual {
+        width: 100%;
+        height: 400px;
+    }
+
+    .network-diagram {
+        width: 100%;
+        max-width: 400px;
+    }
+}

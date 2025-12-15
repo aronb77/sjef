@@ -1,0 +1,105 @@
+/* FAQSection.css */
+.faq-section {
+    padding: 6rem 2rem;
+    background-color: #FFFFFF;
+}
+
+.faq-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 3rem;
+    font-family: var(--font-inter, sans-serif);
+    text-align: left;
+    /* Explicitly left aligned as requested */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* The Accordion List */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #E2E8F0;
+    /* Thin technical line */
+}
+
+/* The Button (Question) */
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-inter, sans-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    /* Medium weight */
+    color: #1A202C;
+    transition: color 0.2s;
+}
+
+.faq-question:hover {
+    color: #F97316;
+    /* Safety Orange hover */
+}
+
+/* The Icon */
+.faq-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.open .faq-icon-wrapper {
+    transform: rotate(45deg);
+    /* Plus becomes X */
+}
+
+.faq-icon {
+    color: #94A3B8;
+}
+
+.faq-item.open .faq-icon {
+    color: #1A202C;
+}
+
+/* The Content (Answer) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.open .faq-answer {
+    max-height: 200px;
+    /* Arbitrary large height to allow expansion */
+}
+
+.faq-answer-content {
+    padding-bottom: 1.5rem;
+    font-family: var(--font-inter, sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #475569;
+    /* Dark Grey for readability */
+    max-width: 90%;
+}
+
+/* CTA Styles */
+.final-cta {
+    text-align: center;
+    margin-top: 6rem;
+    opacity: 0.8;
+}
