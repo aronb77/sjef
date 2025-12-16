@@ -39,23 +39,7 @@
   --font-heading-tracking: -0.03em;
 }
 
-.theme-construction {
-  --color-bg: #0B1120;
-  /* Deep Navy/Slate */
-  --color-bg-alt: #111827;
-  --color-text: #F8FAFC;
-  --color-text-soft: #94A3B8;
-  --color-border: #1E293B;
-  --color-primary: #F97316;
-  /* Orange Primary */
-  --color-primary-soft: rgba(249, 115, 22, 0.15);
-  --color-primary-dark: #EA580C;
-  --color-accent: #3B82F6;
-  --shadow-md: 0 8px 20px -4px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(249, 115, 22, 0.2);
-  --shadow-safety-glow: 0 0 40px rgba(249, 115, 22, 0.4);
-}
+
 
 * {
   box-sizing: border-box;
@@ -111,10 +95,7 @@ h4 {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.theme-construction .glass {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
+
 
 /* Utilities */
 .container {

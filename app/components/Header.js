@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ThemeToggle from "./ThemeToggle";
+
 import "./Header.css";
 
 export default function Header() {
@@ -43,7 +43,7 @@ export default function Header() {
                 <Link href="/login" className="nav-link" style={{ marginRight: '1.5rem', fontSize: '0.95rem' }}>
                     Inloggen
                 </Link>
-                <ThemeToggle />
+
                 <Link href="/register" className="header-cta">
                     Probeer Sjef gratis
                 </Link>
