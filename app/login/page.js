@@ -1,0 +1,74 @@
+import Link from 'next/link';
+import { Eye, EyeOff } from 'lucide-react';
+import './login.css';
+
+export default function LoginPage() {
+    return (
+        <div className="login-container">
+            {/* LEFT COLUMN: BRANDING */}
+            <div className="brand-column">
+                <div className="brand-header">
+                    <Link href="/" className="brand-logo">Sjef.</Link>
+                </div>
+
+                <div className="brand-content">
+                    <h1>Jouw kantoor, eindelijk geregeld.</h1>
+                    <p>Beheer je credits, bekijk je historie en stroomlijn je administratie.</p>
+                </div>
+
+                <div className="brand-footer">
+                    {/* Optional: Copyright or tagline */}
+                    <span>&copy; {new Date().getFullYear()} Sjef.</span>
+                </div>
+            </div>
+
+            {/* RIGHT COLUMN: FORM */}
+            <div className="form-column">
+                <div className="form-wrapper">
+                    <div className="form-header">
+                        <h2>Welkom terug.</h2>
+                        <p className="subtext">Log in met je e-mailadres en wachtwoord.</p>
+                    </div>
+
+                    <form className="login-form">
+                        <div className="input-group">
+                            <label htmlFor="email">E-mailadres</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="jouw@email.nl"
+                                className="input-field"
+                                required
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="password">Wachtwoord</label>
+                            <div className="password-input-wrapper">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="••••••••"
+                                    className="input-field"
+                                    required
+                                />
+                                <button type="button" className="password-toggle" aria-label="Toggle password visibility">
+                                    <Eye className="icon-eye" size={20} />
+                                </button>
+                            </div>
+                            <Link href="/forgot-password" class="forgot-link">Wachtwoord vergeten?</Link>
+                        </div>
+
+                        <button type="submit" className="btn-primary btn-full">
+                            Inloggen
+                        </button>
+                    </form>
+
+                    <div className="form-footer">
+                        <p>Nog geen account? <Link href="/register" className="register-link">Maak er hier een aan</Link>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

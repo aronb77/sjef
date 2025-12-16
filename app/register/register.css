@@ -1,0 +1,283 @@
+/* REGISTER PAGE STYLES */
+/* Reusing core layout from login.css structure for consistency, independent logic here. */
+
+.register-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    font-family: var(--font-inter, sans-serif);
+}
+
+/* --- LEFT COLUMN: BRANDING --- */
+.brand-column {
+    flex: 1;
+    background-color: #1A202C;
+    /* Dark Anthracite */
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-column::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.brand-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.brand-content {
+    max-width: 500px;
+    z-index: 10;
+}
+
+.brand-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.brand-content p {
+    font-size: 1.125rem;
+    color: #94A3B8;
+    line-height: 1.6;
+}
+
+.brand-footer {
+    color: #64748B;
+    font-size: 0.875rem;
+    z-index: 10;
+}
+
+/* --- RIGHT COLUMN: FORM --- */
+.form-column {
+    flex: 1;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    /* allow scrolling if form is tall */
+    overflow-y: auto;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 460px;
+    /* Slightly wider for register form */
+    margin: auto;
+}
+
+.form-header {
+    margin-bottom: 2.5rem;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.5rem;
+}
+
+.subtext {
+    color: #64748B;
+    font-size: 1rem;
+}
+
+/* INPUTS */
+.input-group {
+    margin-bottom: 1.25rem;
+    /* Tighter vertical rhythm */
+    position: relative;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1A202C;
+    margin-bottom: 0.5rem;
+}
+
+.input-group label {
+    margin-bottom: 0;
+    /* Handled by label-row or margin bottom above */
+}
+
+.label-optional {
+    font-size: 0.75rem;
+    color: #94A3B8;
+    font-weight: 400;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    background-color: #F7F9FC;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #0F172A;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-field::placeholder {
+    color: #94A3B8;
+}
+
+.input-field:focus {
+    outline: none;
+    background-color: #FFFFFF;
+    border-color: #F97316;
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+}
+
+/* VALIDATION STATES */
+.input-field.error {
+    border-color: #EF4444;
+    /* Red border */
+    background-color: #FEF2F2;
+}
+
+.input-field.error:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.error-message {
+    font-size: 0.8rem;
+    color: #EF4444;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.validation-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.validation-icon.valid {
+    color: #16A34A;
+    /* Green check */
+}
+
+/* Password Toggle */
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94A3B8;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+}
+
+.password-toggle:hover {
+    color: #64748B;
+}
+
+/* BUTTON */
+.btn-full {
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.legal-text {
+    font-size: 0.75rem;
+    color: #94A3B8;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.legal-text a {
+    color: #64748B;
+    text-decoration: underline;
+}
+
+/* FOOTER / SWITCH */
+.form-footer p {
+    font-size: 0.9375rem;
+    color: #64748B;
+    text-align: center;
+}
+
+.register-link {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .register-container {
+        flex-direction: column;
+    }
+
+    .brand-column {
+        flex: 0 0 160px;
+        padding: 2rem;
+        justify-content: center;
+    }
+
+    .brand-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .brand-content p,
+    .brand-footer {
+        display: none;
+    }
+
+    .form-column {
+        flex: 1;
+        padding: 3rem 1.5rem;
+    }
+}

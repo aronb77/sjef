@@ -40,8 +40,11 @@ export default function Header() {
 
             {/* Actions (Right) */}
             <div className="header-actions">
+                <Link href="/login" className="nav-link" style={{ marginRight: '1.5rem', fontSize: '0.95rem' }}>
+                    Inloggen
+                </Link>
                 <ThemeToggle />
-                <Link href="#proberen" className="header-cta">
+                <Link href="/register" className="header-cta">
                     Probeer Sjef gratis
                 </Link>
             </div>
