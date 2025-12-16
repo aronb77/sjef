@@ -1,0 +1,124 @@
+/* ComparisonSection.css */
+.comparison-section {
+    padding: 6rem 1rem;
+    background: #FFFFFF;
+    position: relative;
+    z-index: 1;
+    /* Above blueprint lines if needed */
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    /* Bit narrower for focus */
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* Base Card Style */
+.comparison-card {
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Left Column: Old Way */
+.comparison-card.old-way {
+    background: #F3F4F6;
+    border: 1px solid transparent;
+    color: #64748B;
+}
+
+.comparison-card.old-way .comp-header {
+    color: #64748B;
+}
+
+.comparison-card.old-way .comp-icon {
+    color: #94A3B8;
+    margin-bottom: 1.5rem;
+}
+
+
+/* Right Column: Sjef Way */
+.comparison-card.sjef-way {
+    background: #FFFFFF;
+    border: 2px solid #F97316;
+    /* Safety Orange Border */
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(249, 115, 22, 0.1);
+    /* Levitated look */
+    transform: scale(1.05);
+    /* Slightly bigger */
+    z-index: 10;
+}
+
+.comparison-card.sjef-way .comp-header {
+    color: #1A202C;
+}
+
+.comparison-card.sjef-way .comp-icon {
+    color: #F97316;
+    margin-bottom: 1.5rem;
+}
+
+
+/* Header Typography */
+.comp-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    font-family: var(--font-inter, sans-serif);
+}
+
+
+/* List Styling */
+.comp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comp-item {
+    display: flex;
+    align-items: flex-start;
+    /* Align top in case of wrapping */
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+}
+
+/* Icons */
+.status-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    /* Visual alignment with text */
+}
+
+.status-icon.cross {
+    color: #EF4444;
+    /* Red */
+}
+
+.status-icon.check {
+    color: #22C55E;
+    /* Green */
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 500px;
+    }
+
+    .comparison-card.sjef-way {
+        transform: scale(1);
+        /* Reset scale */
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+    }
+}

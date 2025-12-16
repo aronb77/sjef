@@ -1,5 +1,6 @@
 import HeroSection from "./components/HeroSection";
 import SjefNetworkSection from "./components/SjefNetworkSection";
+import ComparisonSection from "./components/ComparisonSection";
 import DemoSection from "./components/DemoSection";
 import PricingSection from "./components/PricingSection";
 import FAQSection from "./components/FAQSection";
@@ -20,6 +21,7 @@ export default function Home() {
       <DockNav />
       <HeroSection />
       <SjefNetworkSection />
+      <ComparisonSection />
       <PricingSection />
       <CalculatorSection />
       <TestimonialSection />
