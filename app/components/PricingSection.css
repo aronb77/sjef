@@ -2,11 +2,14 @@
 .pricing-section {
     padding: 6rem 1rem;
     background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FB 100%);
-    /* Very light grey background for contrast with white cards */
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
 }
 
 .pricing-title {
-    text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
     color: #1A202C;
@@ -15,24 +18,21 @@
 }
 
 .pricing-subtitle {
-    text-align: center;
     font-size: 1.125rem;
     color: #64748B;
-    margin-bottom: 4rem;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
-/* The Grid */
-.pricing-grid {
+/* --- Row 1: Subscriptions Grid --- */
+.pricing-grid.subscriptions {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem auto;
+    /* Small margin bottom for visual flow to bundles */
     align-items: stretch;
-    /* Make cards equal height */
 }
 
 /* Card Base */
@@ -44,154 +44,119 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* For badges */
     transition: all 0.2s ease-out;
 }
 
-/* Hover Effect: Edge Lighting */
-.pricing-card:hover {
-    border-color: #F97316;
-    /* Safety Orange */
+/* --- Specific Card Styles --- */
+
+/* Card 1: Starter */
+.pricing-card.starter {
+    border-color: #E2E8F0;
+}
+
+/* Card 2: Pro (Vakman) - Highlight */
+.pricing-card.pro {
+    border: 2px solid #F97316;
+    /* Safety Orange Border */
     box-shadow: var(--shadow-safety-glow);
+    /* Safety Orange Glow */
+    z-index: 10;
     transform: translateY(-4px);
-    z-index: 10;
 }
 
-/* The Hero Card (Center) */
-.pricing-card.hero {
-    border-color: rgba(249, 115, 22, 0.4);
-    /* Subtle orange border by default */
-    background: #FFFFFF;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-    /* Slight lift */
-    z-index: 10;
-    transform: scale(1.05);
-    /* Slightly bigger */
+/* Card 3: Baas (Aannemer) */
+.pricing-card.baas {
+    border-top: 4px solid #1E293B;
+    /* Dark Blue Accent Top */
 }
 
-.pricing-card.hero:hover {
-    border-color: #F97316;
-    box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.2);
-    transform: scale(1.05) translateY(-4px);
-    /* Maintain scale on hover */
-}
 
-/* Badge */
-.hero-badge {
-    position: absolute;
-    top: -12px;
-    right: 2rem;
-    background: #F97316;
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 0.25rem 0.75rem;
-    border-radius: 100px;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3);
-}
-
-/* Card Header */
+/* Common Card Elements */
 .plan-header {
-    margin-bottom: 2rem;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .plan-name {
     font-size: 1.25rem;
     font-weight: 700;
     color: #1A202C;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .plan-price {
-    font-family: 'Roboto Mono', monospace;
-    /* Technical look */
-    font-size: 3rem;
+    font-family: var(--font-roboto-mono, monospace);
+    font-size: 2rem;
     font-weight: 700;
-    color: #F97316;
-    line-height: 1;
-    letter-spacing: -0.05em;
+    color: #1A202C;
 }
 
 .plan-period {
     font-family: var(--font-inter, sans-serif);
     font-size: 1rem;
     color: #94A3B8;
-    font-weight: 500;
-    margin-left: 0.25rem;
+    font-weight: 400;
 }
 
-/* Metrics Block */
+/* Plan Metrics (Credits & Quotes) */
 .plan-metrics {
     text-align: center;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid #F1F5F9;
 }
 
 .metric-value {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 0.25rem;
     display: block;
+    font-family: var(--font-roboto-mono, monospace);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.25rem;
 }
 
-.metric-label {
+.metric-sub {
+    display: block;
     font-size: 0.875rem;
-    color: #64748B;
+    color: #94A3B8;
     font-style: italic;
 }
 
-/* Features List */
-.plan-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-    /* Pushes button down */
-    margin-bottom: 3rem;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 0.9375rem;
-    color: #475569;
-}
-
-.check-icon {
-    color: #16A34A;
-    /* Green check */
-    width: 20px;
-    height: 20px;
-}
-
-/* Target Audience Label */
+/* Target Audience */
 .plan-target {
     text-align: center;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #94A3B8;
-    margin-bottom: 1rem;
+    font-size: 0.875rem;
     font-weight: 600;
+    color: #475569;
+    margin-bottom: 1rem;
+}
+
+.plan-extra {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #2563EB;
+    /* Blue for extra feature */
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.plan-button-wrapper {
+    margin-top: auto;
+    /* Push button to bottom */
 }
 
 /* Buttons */
 .btn-price {
     display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     text-align: center;
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
+    font-size: 0.9375rem;
 }
 
 .btn-price.default {
@@ -215,27 +180,124 @@
     box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
 }
 
-/* Footer */
-.pricing-footer {
-    text-align: center;
-    margin-top: 3rem;
-    font-size: 0.875rem;
-    color: #94A3B8;
+.btn-price.dark-btn {
+    background: #1E293B;
+    color: white;
 }
 
-/* Mobile Responsive */
+.btn-price.dark-btn:hover {
+    background: #0F172A;
+}
+
+
+/* Badge for Pro Card */
+.hero-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F97316;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3);
+    white-space: nowrap;
+}
+
+
+/* --- Row 2: Bundles (Bento Grid Style) --- */
+.bundles-section {
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+}
+
+.bundles-title {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #64748B;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.bundle-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    /* Slightly less rounded than main cards for differentiation */
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+}
+
+.bundle-card:hover {
+    border-color: #CBD5E1;
+}
+
+.bundle-card.highlight {
+    border-color: #F97316;
+    background: #FFF7ED;
+    /* Very light orange bg */
+}
+
+.bundle-info {
+    flex: 1;
+}
+
+.bundle-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.25rem;
+}
+
+.bundle-sub {
+    font-size: 0.8rem;
+    color: #64748B;
+}
+
+.bundle-credits {
+    font-family: var(--font-roboto-mono, monospace);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin: 0 1rem;
+    padding: 0.25rem 0.5rem;
+    background: #F1F5F9;
+    border-radius: 4px;
+}
+
+.bundle-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+
+/* Responsive */
 @media (max-width: 900px) {
-    .pricing-grid {
+
+    .pricing-grid.subscriptions,
+    .bundles-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
         max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .pricing-card.hero {
-        transform: scale(1);
-    }
-
-    .pricing-card.hero:hover {
-        transform: translateY(-4px);
+    .pricing-card.pro {
+        transform: none;
+        /* Reset transform on mobile */
     }
 }

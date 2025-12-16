@@ -1,8 +1,13 @@
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
 });
 
@@ -16,7 +21,7 @@ import Header from "./components/Header";
 export default function RootLayout({ children }) {
   return (
     <html lang="nl" suppressHydrationWarning>
-      <body className={inter.variable}>
+      <body className={`${inter.variable} ${robotoMono.variable}`}>
         <Header />
         {children}
       </body>
