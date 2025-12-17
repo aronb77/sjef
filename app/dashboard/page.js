@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { logout } from '../auth/actions'
 import { FileText, Calendar, Clock, Sparkles, Mic, CreditCard } from 'lucide-react' // Import icons
+import BuyCreditsButton from './BuyCreditsButton'
 import RedeemForm from './RedeemForm'
 import './Dashboard.css'
 
@@ -156,14 +157,13 @@ export default async function DashboardPage() {
                 {/* WIDGET 5: QUICK ACTIONS */}
                 <div className="widget-card widget-actions">
                     <div className="action-buttons-row">
+
+
                         <button className="btn-action-primary">
                             <Mic size={20} />
                             Offerte Inspreken
                         </button>
-                        <button className="btn-action-secondary">
-                            <CreditCard size={18} style={{ marginRight: '0.5rem' }} />
-                            Credits Kopen
-                        </button>
+                        <BuyCreditsButton />
                     </div>
 
                     <RedeemForm />

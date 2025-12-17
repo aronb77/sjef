@@ -1,10 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react"; // Added Loader
+import { useState } from "react";
+import { STRIPE_PRICES } from "@/lib/stripe-config";
 import "./PricingSection.css";
 
 export default function PricingSection() {
+    const [loading, setLoading] = useState(null); // priceId or true
+
+    const handleCheckout = async (priceId) => {
+        if (!priceId) return;
+        setLoading(priceId);
+
+        try {
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ priceId }),
+            });
+
+            if (!response.ok) throw new Error('Checkout failed');
+
+            const { url } = await response.json();
+            window.location.href = url;
+        } catch (error) {
+            console.error(error);
+            alert('Er ging iets mis met het afrekenen. Probeer het later opnieuw.');
+            setLoading(null);
+        }
+    };
+
+    const ButtonContent = ({ text, id }) => (
+        <>
+            {loading === id ? <Loader2 className="animate-spin" size={20} /> : text}
+        </>
+    );
+
     return (
         <section id="prijzen" className="pricing-section">
             <div className="container">
@@ -32,9 +64,13 @@ export default function PricingSection() {
                         <div className="plan-target">De bijklusser.</div>
 
                         <div className="plan-button-wrapper">
-                            <Link href="/aanmelden?plan=starter" className="btn-price default">
-                                Kies Starter
-                            </Link>
+                            <button
+                                onClick={() => handleCheckout(STRIPE_PRICES.starter)}
+                                className="btn-price default"
+                                disabled={!!loading}
+                            >
+                                <ButtonContent text="Kies Starter" id={STRIPE_PRICES.starter} />
+                            </button>
                         </div>
                     </div>
 
@@ -54,9 +90,13 @@ export default function PricingSection() {
                         <div className="plan-target">De fulltime pro.</div>
 
                         <div className="plan-button-wrapper">
-                            <Link href="/aanmelden?plan=pro" className="btn-price hero-btn">
-                                Kies Vakman
-                            </Link>
+                            <button
+                                onClick={() => handleCheckout(STRIPE_PRICES.vakman)}
+                                className="btn-price hero-btn"
+                                disabled={!!loading}
+                            >
+                                <ButtonContent text="Kies Vakman" id={STRIPE_PRICES.vakman} />
+                            </button>
                         </div>
                     </div>
 
@@ -76,9 +116,13 @@ export default function PricingSection() {
                         <div className="plan-extra">Inclusief eigen logo op PDF.</div>
 
                         <div className="plan-button-wrapper">
-                            <Link href="/aanmelden?plan=baas" className="btn-price dark-btn">
-                                Kies Aannemer
-                            </Link>
+                            <button
+                                onClick={() => handleCheckout(STRIPE_PRICES.aannemer)}
+                                className="btn-price dark-btn"
+                                disabled={!!loading}
+                            >
+                                <ButtonContent text="Kies Aannemer" id={STRIPE_PRICES.aannemer} />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -88,7 +132,7 @@ export default function PricingSection() {
                     <h3 className="bundles-title">Credits op? Tank bij.</h3>
                     <div className="bundles-grid">
                         {/* BUNDEL A (Onder Starter) */}
-                        <div className="bundle-card">
+                        <div className="bundle-card" onClick={() => handleCheckout(STRIPE_PRICES.noodrantsoen)} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
                                 <h4 className="bundle-name">Noodrantsoen</h4>
                                 <div className="bundle-sub">± 5 offertes</div>
@@ -98,7 +142,7 @@ export default function PricingSection() {
                         </div>
 
                         {/* BUNDEL B (Onder Pro) */}
-                        <div className="bundle-card highlight">
+                        <div className="bundle-card highlight" onClick={() => handleCheckout(STRIPE_PRICES.tankbeurt)} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
                                 <h4 className="bundle-name">Tankbeurt</h4>
                                 <div className="bundle-sub">± 22 offertes</div>
@@ -108,7 +152,7 @@ export default function PricingSection() {
                         </div>
 
                         {/* BUNDEL C (Onder Baas) */}
-                        <div className="bundle-card">
+                        <div className="bundle-card" onClick={() => handleCheckout(STRIPE_PRICES.voorraad)} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
                                 <h4 className="bundle-name">De Voorraad</h4>
                                 <div className="bundle-sub">± 50 offertes</div>
