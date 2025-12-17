@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
 import './login.css';
+import { login } from '../auth/actions';
 
 export default function LoginPage() {
     return (
@@ -30,12 +31,15 @@ export default function LoginPage() {
                         <p className="subtext">Log in met je e-mailadres en wachtwoord.</p>
                     </div>
 
+
+
                     <form className="login-form">
                         <div className="input-group">
                             <label htmlFor="email">E-mailadres</label>
                             <input
                                 type="email"
                                 id="email"
+                                name="email" /* Added name attribute */
                                 placeholder="jouw@email.nl"
                                 className="input-field"
                                 required
@@ -48,6 +52,7 @@ export default function LoginPage() {
                                 <input
                                     type="password"
                                     id="password"
+                                    name="password" /* Added name attribute */
                                     placeholder="••••••••"
                                     className="input-field"
                                     required
@@ -56,10 +61,10 @@ export default function LoginPage() {
                                     <Eye className="icon-eye" size={20} />
                                 </button>
                             </div>
-                            <Link href="/forgot-password" class="forgot-link">Wachtwoord vergeten?</Link>
+                            <Link href="/forgot-password" className="forgot-link">Wachtwoord vergeten?</Link>
                         </div>
 
-                        <button type="submit" className="btn-primary btn-full">
+                        <button formAction={login} className="btn-primary btn-full">
                             Inloggen
                         </button>
                     </form>

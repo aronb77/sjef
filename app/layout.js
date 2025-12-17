@@ -18,14 +18,16 @@ export const metadata = {
 
 import Header from "./components/Header";
 import BlueprintLines from "./components/BlueprintLines";
+import Footer from "./components/Footer";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="nl" suppressHydrationWarning>
-      <body className={`${inter.variable} ${robotoMono.variable}`}>
+      <body className={`${inter.variable} ${robotoMono.variable}`} suppressHydrationWarning>
         <BlueprintLines />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Eye, EyeOff, Check, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import './register.css';
+import { signup } from '../auth/actions';
 
 export default function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
@@ -59,7 +60,9 @@ export default function RegisterPage() {
                         <p className="subtext">Vul je gegevens in om te starten.</p>
                     </div>
 
-                    <form className="register-form" onSubmit={(e) => e.preventDefault()}>
+
+
+                    <form className="register-form">
 
                         {/* NAME */}
                         <div className="input-group">
@@ -71,7 +74,8 @@ export default function RegisterPage() {
                                     name="name"
                                     placeholder="Jan de Vries"
                                     className="input-field"
-                                    value={formData.name}
+                                    /* Removed controlled value for server action simplicity or keep it if needed for validation visual only, but server action needs name. kept value/onChange for validation logic */
+                                    defaultValue={formData.name}
                                     onChange={handleChange}
                                     required
                                 />
@@ -93,7 +97,7 @@ export default function RegisterPage() {
                                 name="company"
                                 placeholder="Jansen Bouw B.V."
                                 className="input-field"
-                                value={formData.company}
+                                defaultValue={formData.company}
                                 onChange={handleChange}
                             />
                         </div>
@@ -108,7 +112,7 @@ export default function RegisterPage() {
                                     name="email"
                                     placeholder="jouw@email.nl"
                                     className={`input-field ${showEmailError ? 'error' : ''}`}
-                                    value={formData.email}
+                                    defaultValue={formData.email}
                                     onChange={handleChange}
                                     onBlur={() => handleBlur('email')}
                                     required
@@ -129,7 +133,7 @@ export default function RegisterPage() {
                                     name="password"
                                     placeholder="Minimaal 6 tekens"
                                     className={`input-field ${showPasswordError ? 'error' : ''}`}
-                                    value={formData.password}
+                                    defaultValue={formData.password}
                                     onChange={handleChange}
                                     onBlur={() => handleBlur('password')}
                                     required
@@ -148,7 +152,7 @@ export default function RegisterPage() {
                             )}
                         </div>
 
-                        <button type="submit" className="btn-primary btn-full">
+                        <button formAction={signup} className="btn-primary btn-full">
                             Account aanmaken
                         </button>
 

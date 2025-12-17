@@ -1,0 +1,332 @@
+/* Dashboard Layout */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #F8F9FB;
+    font-family: var(--font-inter, sans-serif);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: #E2E8F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #64748B;
+}
+
+.user-badge {
+    background: #FEFCE8;
+    color: #CA8A04;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #FEF08A;
+}
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1.5rem;
+}
+
+/* Mobile: Single column */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Widget Card Base */
+.widget-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    border: 1px solid #F1F5F9;
+    display: flex;
+    flex-direction: column;
+}
+
+/* WIDGET 1: Fuel Gauge (Left, Big Square/Tall) */
+.widget-fuel {
+    grid-row: span 2;
+    /* Span 2 rows tall */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.fuel-chart-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+}
+
+.fuel-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fuel-number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1;
+    font-family: var(--font-roboto-mono, monospace);
+}
+
+.fuel-label {
+    font-size: 1rem;
+    color: #64748B;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.fuel-micro {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #94A3B8;
+}
+
+/* WIDGET 2: Production (Top Right, Wide) */
+.widget-production {
+    grid-column: 2;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    background: #F1F5F9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.stat-value.green {
+    color: #22C55E;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* WIDGET 3: Runway (Middle Right) */
+.widget-runway {
+    grid-column: 2;
+    background: #EFF6FF;
+    /* Light blue accent */
+    border: 1px solid #DBEAFE;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.runway-icon {
+    font-size: 1.5rem;
+}
+
+.runway-text {
+    font-size: 0.9375rem;
+    color: #1E40AF;
+    font-weight: 500;
+}
+
+/* WIDGET 4: Recent Activity (Bottom Left - wait, user said bottom left large? User said "Linksonder, Breed") 
+   Grid logic: 
+   Left col is usually tall. If widget 1 is tall (span 2), then bottom left is under it.
+   Let's adjust grid:
+   Col 1: Fuel (Row 1-2), Activity (Row 3)
+   Col 2: Production (Row 1), Runway (Row 2), Quick Actions (Row 3)
+*/
+
+.widget-activity {
+    grid-column: 1 / -1;
+    /* Full width option? Or just Col 1? User said "Linksonder, Breed", but implied layout was complex. */
+    /* Let's try to fit strict 4-block layout or 5-block.
+       User:
+       1. Fuel (Left, Groot Vierkant)
+       2. Production (Rechtsboven)
+       3. Runway (Rechtsmidden)
+       4. Activity (Linksonder, Breed) -> This suggests it spans width or is under Fuel.
+       5. Quick Actions (Rechtsonder)
+       
+       Let's try:
+       Grid: 2 columns.
+       [ Fuel (2 rows) ]  [ Production ]
+                          [ Runway     ]
+       [ Activity      ]  [ Actions    ]
+       
+       So Activity is Row 3, Col 1. Actions is Row 3, Col 2.
+    */
+    grid-column: 1;
+    grid-row: 3;
+}
+
+/* Override: "Linksonder, Breed". If Fuel is large square, maybe it takes top-left.
+   Let's make Activity span full width if needed? No, user said "Linksonder".
+ */
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.activity-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.activity-time {
+    font-size: 0.75rem;
+    color: #94A3B8;
+}
+
+.activity-amount {
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: var(--font-roboto-mono, monospace);
+}
+
+.activity-amount.negative {
+    color: #64748B;
+}
+
+.activity-amount.positive {
+    color: #22C55E;
+}
+
+
+/* WIDGET 5: Quick Actions (Bottom Right) */
+.widget-actions {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    flex-direction: row;
+    /* Or column? "Knop 1 (Primair)... Knop 2" */
+    gap: 1rem;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.btn-action-primary {
+    flex: 1;
+    background: #F97316;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.3);
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-action-primary:hover {
+    transform: translateY(-2px);
+    background: #EA580C;
+}
+
+.btn-action-secondary {
+    flex: 1;
+    background: white;
+    color: #64748B;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action-secondary:hover {
+    background: #F8FAFC;
+    color: #334155;
+}
