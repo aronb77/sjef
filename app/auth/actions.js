@@ -36,8 +36,8 @@ export async function signup(formData) {
         redirect('/register?error=true')
     }
 
-    revalidatePath('/', 'layout')
-    redirect('/dashboard')
+    // revalidatePath('/', 'layout') // Not needed if redirecting to a static-ish page
+    redirect(`/auth/verify?email=${encodeURIComponent(data.email)}`)
 }
 
 export async function logout() {
