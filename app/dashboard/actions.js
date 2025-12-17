@@ -4,7 +4,8 @@ import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 
 export async function redeemLicense(prevState, formData) {
-    const code = formData.get('code')?.toString().trim().toUpperCase()
+    const entry = formData.get('code')
+    const code = entry?.toString().trim().toUpperCase()
 
     if (!code) {
         return { message: 'Voer een geldige code in.', success: false }
