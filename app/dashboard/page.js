@@ -4,6 +4,7 @@ import { logout } from '../auth/actions'
 import { FileText, Calendar, Clock, Sparkles, Mic, CreditCard } from 'lucide-react' // Import icons
 import BuyCreditsButton from './BuyCreditsButton'
 import RedeemForm from './RedeemForm'
+import CompactPricing from './CompactPricing'
 import './Dashboard.css'
 
 export default async function DashboardPage() {
@@ -163,13 +164,14 @@ export default async function DashboardPage() {
                             <Mic size={20} />
                             Offerte Inspreken
                         </button>
-                        <BuyCreditsButton />
                     </div>
 
                     <RedeemForm />
                 </div>
 
             </div>
+
+            <CompactPricing />
         </div>
     )
 }

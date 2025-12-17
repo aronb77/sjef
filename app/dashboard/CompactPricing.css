@@ -1,0 +1,137 @@
+/* CompactPricing.css */
+.compact-pricing-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+}
+
+.cp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.cp-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1A202C;
+}
+
+.cp-subtitle {
+    font-size: 0.875rem;
+    color: #64748B;
+}
+
+/* Grids */
+.cp-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cp-section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94A3B8;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.cp-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+/* Card Styles */
+.cp-card {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: left;
+    transition: all 0.2s;
+    background: #F8F9FC;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.cp-card:hover {
+    border-color: #CBD5E1;
+    background: #FFFFFF;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.cp-card.featured {
+    border: 1px solid #F97316;
+    background: #FFF7ED;
+}
+
+.cp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.cp-plan-name {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: #1A202C;
+}
+
+.cp-plan-price {
+    font-family: var(--font-roboto-mono, monospace);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.cp-credits {
+    font-family: var(--font-roboto-mono, monospace);
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.25rem;
+}
+
+.cp-sub {
+    font-size: 0.75rem;
+    color: #64748B;
+}
+
+.cp-badge {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    background: #F97316;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* Loading State Overlay */
+.cp-loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .cp-row {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,32 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Loader2 } from "lucide-react"; // Added Loader
+import { Check, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { STRIPE_PRICES } from "@/lib/stripe-config";
+import { STRIPE_PLANS } from "@/lib/stripe-config";
 import "./PricingSection.css";
 
 export default function PricingSection() {
     const [loading, setLoading] = useState(null); // priceId or true
 
-    const handleCheckout = async (priceId) => {
-        if (!priceId) return;
-        setLoading(priceId);
+    const handleCheckout = async (planKey) => {
+        const plan = STRIPE_PLANS[planKey];
+        if (!plan) return;
+
+        setLoading(plan.priceId);
 
         try {
             const response = await fetch('/api/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ priceId }),
+                body: JSON.stringify({
+                    priceId: plan.priceId,
+                    mode: plan.mode
+                }),
             });
 
-            if (!response.ok) throw new Error('Checkout failed');
+            if (!response.ok) {
+                const errorMsg = await response.text();
+                throw new Error(errorMsg || 'Checkout failed');
+            }
 
             const { url } = await response.json();
             window.location.href = url;
         } catch (error) {
             console.error(error);
-            alert('Er ging iets mis met het afrekenen. Probeer het later opnieuw.');
+            alert(error instanceof Error ? error.message : 'Er ging iets mis met het afrekenen.');
             setLoading(null);
         }
     };
@@ -52,12 +60,12 @@ export default function PricingSection() {
                     {/* Card 1: Starter */}
                     <div className="pricing-card starter">
                         <div className="plan-header">
-                            <h3 className="plan-name">Starter</h3>
-                            <div className="plan-price">€ 19 <span className="plan-period">/mnd</span></div>
+                            <h3 className="plan-name">{STRIPE_PLANS.starter.name}</h3>
+                            <div className="plan-price">{STRIPE_PLANS.starter.price} <span className="plan-period">/mnd</span></div>
                         </div>
 
                         <div className="plan-metrics">
-                            <span className="metric-value">60 Credits</span>
+                            <span className="metric-value">{STRIPE_PLANS.starter.credits} Credits</span>
                             <span className="metric-sub">Goed voor ± 30 offertes</span>
                         </div>
 
@@ -65,11 +73,11 @@ export default function PricingSection() {
 
                         <div className="plan-button-wrapper">
                             <button
-                                onClick={() => handleCheckout(STRIPE_PRICES.starter)}
+                                onClick={() => handleCheckout('starter')}
                                 className="btn-price default"
                                 disabled={!!loading}
                             >
-                                <ButtonContent text="Kies Starter" id={STRIPE_PRICES.starter} />
+                                <ButtonContent text="Kies Starter" id={STRIPE_PLANS.starter.priceId} />
                             </button>
                         </div>
                     </div>
@@ -78,12 +86,12 @@ export default function PricingSection() {
                     <div className="pricing-card pro">
                         <div className="hero-badge">Meest Gekozen</div>
                         <div className="plan-header">
-                            <h3 className="plan-name">Vakman</h3>
-                            <div className="plan-price">€ 29 <span className="plan-period">/mnd</span></div>
+                            <h3 className="plan-name">{STRIPE_PLANS.pro.name}</h3>
+                            <div className="plan-price">{STRIPE_PLANS.pro.price} <span className="plan-period">/mnd</span></div>
                         </div>
 
                         <div className="plan-metrics">
-                            <span className="metric-value">80 Credits</span>
+                            <span className="metric-value">{STRIPE_PLANS.pro.credits} Credits</span>
                             <span className="metric-sub">Goed voor ± 40 offertes</span>
                         </div>
 
@@ -91,11 +99,11 @@ export default function PricingSection() {
 
                         <div className="plan-button-wrapper">
                             <button
-                                onClick={() => handleCheckout(STRIPE_PRICES.vakman)}
+                                onClick={() => handleCheckout('pro')}
                                 className="btn-price hero-btn"
                                 disabled={!!loading}
                             >
-                                <ButtonContent text="Kies Vakman" id={STRIPE_PRICES.vakman} />
+                                <ButtonContent text="Kies Vakman" id={STRIPE_PLANS.pro.priceId} />
                             </button>
                         </div>
                     </div>
@@ -103,12 +111,12 @@ export default function PricingSection() {
                     {/* Card 3: Baas (Aannemer) */}
                     <div className="pricing-card baas">
                         <div className="plan-header">
-                            <h3 className="plan-name">Aannemer</h3>
-                            <div className="plan-price">€ 59 <span className="plan-period">/mnd</span></div>
+                            <h3 className="plan-name">{STRIPE_PLANS.baas.name}</h3>
+                            <div className="plan-price">{STRIPE_PLANS.baas.price} <span className="plan-period">/mnd</span></div>
                         </div>
 
                         <div className="plan-metrics">
-                            <span className="metric-value">250 Credits</span>
+                            <span className="metric-value">{STRIPE_PLANS.baas.credits} Credits</span>
                             <span className="metric-sub">Goed voor ± 125 offertes</span>
                         </div>
 
@@ -117,48 +125,48 @@ export default function PricingSection() {
 
                         <div className="plan-button-wrapper">
                             <button
-                                onClick={() => handleCheckout(STRIPE_PRICES.aannemer)}
+                                onClick={() => handleCheckout('baas')}
                                 className="btn-price dark-btn"
                                 disabled={!!loading}
                             >
-                                <ButtonContent text="Kies Aannemer" id={STRIPE_PRICES.aannemer} />
+                                <ButtonContent text="Kies Aannemer" id={STRIPE_PLANS.baas.priceId} />
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* RIJ 2: LOSSE BUNDELS (Credits op? Tank bij) */}
+                {/* ROW 2: LOSE BUNDELS (Add-ons) */}
                 <div className="bundles-section">
                     <h3 className="bundles-title">Credits op? Tank bij.</h3>
                     <div className="bundles-grid">
-                        {/* BUNDEL A (Onder Starter) */}
-                        <div className="bundle-card" onClick={() => handleCheckout(STRIPE_PRICES.noodrantsoen)} role="button" style={{ cursor: 'pointer' }}>
+                        {/* BUNDEL A (Nood) */}
+                        <div className="bundle-card" onClick={() => handleCheckout('nood')} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
-                                <h4 className="bundle-name">Noodrantsoen</h4>
+                                <h4 className="bundle-name">{STRIPE_PLANS.nood.name}</h4>
                                 <div className="bundle-sub">± 5 offertes</div>
                             </div>
-                            <div className="bundle-credits">10 Cr.</div>
-                            <div className="bundle-price">€ 5,-</div>
+                            <div className="bundle-credits">{STRIPE_PLANS.nood.credits} Cr.</div>
+                            <div className="bundle-price">{STRIPE_PLANS.nood.price}</div>
                         </div>
 
-                        {/* BUNDEL B (Onder Pro) */}
-                        <div className="bundle-card highlight" onClick={() => handleCheckout(STRIPE_PRICES.tankbeurt)} role="button" style={{ cursor: 'pointer' }}>
+                        {/* BUNDEL B (Tank) */}
+                        <div className="bundle-card highlight" onClick={() => handleCheckout('tank')} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
-                                <h4 className="bundle-name">Tankbeurt</h4>
+                                <h4 className="bundle-name">{STRIPE_PLANS.tank.name}</h4>
                                 <div className="bundle-sub">± 22 offertes</div>
                             </div>
-                            <div className="bundle-credits">45 Cr.</div>
-                            <div className="bundle-price">€ 19,-</div>
+                            <div className="bundle-credits">{STRIPE_PLANS.tank.credits} Cr.</div>
+                            <div className="bundle-price">{STRIPE_PLANS.tank.price}</div>
                         </div>
 
-                        {/* BUNDEL C (Onder Baas) */}
-                        <div className="bundle-card" onClick={() => handleCheckout(STRIPE_PRICES.voorraad)} role="button" style={{ cursor: 'pointer' }}>
+                        {/* BUNDEL C (Voorraad) */}
+                        <div className="bundle-card" onClick={() => handleCheckout('voorraad')} role="button" style={{ cursor: 'pointer' }}>
                             <div className="bundle-info">
-                                <h4 className="bundle-name">De Voorraad</h4>
+                                <h4 className="bundle-name">{STRIPE_PLANS.voorraad.name}</h4>
                                 <div className="bundle-sub">± 50 offertes</div>
                             </div>
-                            <div className="bundle-credits">100 Cr.</div>
-                            <div className="bundle-price">€ 39,-</div>
+                            <div className="bundle-credits">{STRIPE_PLANS.voorraad.credits} Cr.</div>
+                            <div className="bundle-price">{STRIPE_PLANS.voorraad.price}</div>
                         </div>
                     </div>
                 </div>

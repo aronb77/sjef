@@ -295,6 +295,8 @@
     background: #F97316;
     color: white;
     border: none;
+    padding: 1.5rem 1rem;
+    /* Increased vertical padding */
     border-radius: 8px;
     font-weight: 700;
     font-size: 1rem;

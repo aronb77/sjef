@@ -2,7 +2,7 @@
 
 import { CreditCard, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { STRIPE_PRICES } from "@/lib/stripe-config";
+import { STRIPE_PLANS } from "@/lib/stripe-config";
 
 export default function BuyCreditsButton() {
     const [loading, setLoading] = useState(false);
@@ -10,21 +10,28 @@ export default function BuyCreditsButton() {
     const handleBuy = async () => {
         setLoading(true);
         try {
-            // Default to 'tankbeurt' for Quick Buy, or make it open a modal in future.
-            // For now: Quick Buy Tankbeurt (Most common)
+            // Default to 'tank' (Tankbeurt) for Quick Buy
+            const plan = STRIPE_PLANS.tank;
+
             const response = await fetch('/api/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ priceId: STRIPE_PRICES.tankbeurt }),
+                body: JSON.stringify({
+                    priceId: plan.priceId,
+                    mode: plan.mode
+                }),
             });
 
-            if (!response.ok) throw new Error('Checkout failed');
+            if (!response.ok) {
+                const errorMsg = await response.text();
+                throw new Error(errorMsg || 'Checkout failed');
+            }
 
             const { url } = await response.json();
             window.location.href = url;
         } catch (error) {
             console.error(error);
-            alert('Kan de kassa niet openen.');
+            alert(error instanceof Error ? error.message : 'Kan de kassa niet openen.');
             setLoading(false);
         }
     };
