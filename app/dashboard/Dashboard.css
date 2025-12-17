@@ -330,3 +330,83 @@
     background: #F8FAFC;
     color: #334155;
 }
+
+/* Redeem Form Styling */
+.redeem-form {
+    width: 100%;
+}
+
+.redeem-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #F1F5F9;
+}
+
+.redeem-input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #0F172A;
+    background: #F8FAFC;
+}
+
+.redeem-input:focus {
+    outline: none;
+    border-color: #F97316;
+    background: white;
+}
+
+.btn-redeem {
+    background: #0F172A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-redeem:hover {
+    background: #334155;
+}
+
+.btn-redeem:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.redeem-message {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.redeem-message.success {
+    color: #22C55E;
+}
+
+.redeem-message.error {
+    color: #EF4444;
+}
+
+/* Custom: Let "Quick Actions" stack differently now */
+.widget-actions {
+    flex-direction: column !important;
+    /* Force column stack */
+    justify-content: flex-start !important;
+}
+
+.action-buttons-row {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
