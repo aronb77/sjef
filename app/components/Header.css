@@ -18,6 +18,36 @@
         /* Scrolls away on mobile */
         top: 1rem;
     }
+
+    .header-container {
+        /* Slimmer padding for elegance */
+        padding: 0.5rem 1.25rem;
+        gap: 1.5rem;
+        /* Reduced gap */
+        width: 92%;
+        /* Slightly wider to fit content but keep pill look */
+        max-width: 400px;
+    }
+
+    .header-brand {
+        font-size: 1.2rem;
+        /* Slightly smaller logo */
+    }
+
+    .mobile-menu {
+        position: absolute;
+        /* Follows the header document flow */
+        top: calc(100% + 1rem);
+        /* Directly below the pill */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        /* Wider to avoid edge cutting */
+        max-width: 360px;
+        /* Ensure it doesn't overflow viewport height if possible, though scrolling is fine */
+        max-height: 80vh;
+        overflow-y: auto;
+    }
 }
 
 .header-container {
@@ -182,10 +212,10 @@
 
 /* --- MOBILE MENU (Detached/Floating) --- */
 .mobile-menu {
-    position: fixed;
-    /* Fixed relative to viewport, not header */
-    top: 5.5rem;
-    /* Below the header pill */
+    position: absolute;
+    /* Positioned relative to the Header parent */
+    top: calc(100% + 1rem);
+    /* Dynamic spacing below header */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
