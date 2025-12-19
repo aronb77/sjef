@@ -1,78 +1,46 @@
 "use client";
 
-import { Home, Calculator, Receipt, Mail, Hammer } from "lucide-react";
+import { Home, Tag, Info, Shield, LogIn } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import "./DockNav.css";
 
 export default function DockNav() {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const [activeTab, setActiveTab] = useState("");
+
+    useEffect(() => {
+        const handleScroll = () => {
+            // Show dock when scrolled down > 100px (Header disappears on mobile ~100px)
+            const shouldShow = window.scrollY > 100;
+            setIsVisible(shouldShow);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const tools = [
-        { icon: <Home size={24} />, label: "Home", href: "#" },
-        { icon: <Calculator size={24} />, label: "Reken", href: "#calculator" },
-        { icon: <Receipt size={24} />, label: "Prijzen", href: "#pricing" },
-        { icon: <Hammer size={24} />, label: "Demo", href: "#demo" },
-        { icon: <Mail size={24} />, label: "Contact", href: "#contact" },
+        { icon: <Home size={22} />, label: "Home", href: "/" },
+        { icon: <Tag size={22} />, label: "Prijzen", href: "#prijzen" },
+        { icon: <Info size={22} />, label: "About", href: "/about" },
+        { icon: <Shield size={22} />, label: "Veiligheid", href: "/security" },
+        { icon: <LogIn size={22} />, label: "Login", href: "/login" },
     ];
 
     return (
-        <div
-            style={{
-                position: 'fixed',
-                bottom: '32px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                display: 'flex',
-                gap: '12px',
-                padding: '12px 20px',
-                background: 'rgba(255, 255, 255, 0.8)',
-                backdropFilter: 'blur(12px)',
-                borderRadius: '24px',
-                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.2)',
-                border: '1px solid rgba(255,255,255,0.4)',
-                zIndex: 1000,
-                alignItems: 'flex-end',
-            }}
-            className="dock-nav"
-        >
+        <nav className={`dock-nav ${isVisible ? "visible" : ""}`}>
             {tools.map((tool, index) => (
-                <button
+                <Link
                     key={index}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                    style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: '12px',
-                        background: hoveredIndex === index ? 'var(--color-primary)' : 'var(--color-bg-soft)',
-                        color: hoveredIndex === index ? 'white' : 'var(--color-text)',
-                        border: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: hoveredIndex === index ? 'scale(1.2) translateY(-10px)' : 'scale(1)',
-                        position: 'relative'
-                    }}
-                    title={tool.label}
+                    href={tool.href}
+                    className={`dock-btn ${activeTab === tool.href ? "active" : ""}`}
+                    onClick={() => setActiveTab(tool.href)}
                 >
                     {tool.icon}
-                    {hoveredIndex === index && (
-                        <span style={{
-                            position: 'absolute',
-                            top: '-35px',
-                            background: '#1f2937',
-                            color: 'white',
-                            padding: '4px 8px',
-                            borderRadius: '6px',
-                            fontSize: '12px',
-                            whiteSpace: 'nowrap'
-                        }}>
-                            {tool.label}
-                        </span>
-                    )}
-                </button>
+                    {/* Optional: Tooltip if needed, but keeping it icon-only as requested */}
+                </Link>
             ))}
-        </div>
+        </nav>
     );
 }

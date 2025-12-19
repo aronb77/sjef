@@ -47,6 +47,7 @@ export default function SjefNetworkSection() {
 
     return (
         <section
+            id="features"
             className={`sjef-network-section animate-on-scroll ${inView ? "in-view" : ""}`}
             ref={sectionRef}
             onMouseMove={handleMouseMove}
