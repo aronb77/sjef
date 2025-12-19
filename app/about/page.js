@@ -7,11 +7,12 @@ export default function MeetSjef() {
 
             {/* SECTIE 1: DE HERO (The Introduction) */}
             <section className="hero-section">
-                <div className="hero-overlay"></div>
                 <div className="hero-content">
                     <h1 className="hero-title">IK BEN SJEF.</h1>
                     <p className="hero-subtext mono">
-                        Geen koffiepauzes. Geen 9-tot-5 mentaliteit. Jouw nieuwe stille vennoot.
+                        // GEEN KOFFIEPAUZES.<br />
+                        // GEEN 9-TOT-5 MENTALITEIT.<br />
+                        // JOUW NIEUWE STILLE VENNOOT.
                     </p>
                 </div>
             </section>
@@ -19,7 +20,7 @@ export default function MeetSjef() {
             {/* SECTIE 2: HET MANIFEST (The Code) */}
             <section className="manifest-section">
                 <div className="manifest-container">
-                    <h2 className="section-title mono">&lt;MIJN PROGRAMMERING /&gt;</h2>
+                    <h2 className="section-title mono">01_MANIFEST</h2>
                     <p className="manifest-text">
                         Ik ben gebouwd voor één doel: De avond terugveroveren. Terwijl jij op de steiger staat, doe ik de administratie.
                         Ik luister naar je stem, begrijp je vakjargon en vertaal jouw vakmanschap naar papierwerk dat staat als een huis.
@@ -30,25 +31,25 @@ export default function MeetSjef() {
 
             {/* SECTIE 3: DE SPECIFICATIES (The Machine Data) */}
             <section className="specs-section">
-                <div className="specs-grid mono">
+                <div className="specs-grid">
                     <div className="spec-card">
-                        <span className="spec-label">OUTPUT</span>
+                        <span className="spec-label">OUTPUT CAPACITEIT</span>
                         <div className="spec-value">RAZOR-SHARP PDF'S</div>
                     </div>
                     <div className="spec-card">
-                        <span className="spec-label">FUEL</span>
+                        <span className="spec-label">BRANDSTOF TYPE</span>
                         <div className="spec-value">SPRAAK & DATA</div>
                     </div>
                     <div className="spec-card">
-                        <span className="spec-label">MEMORY</span>
+                        <span className="spec-label">INTERN GEHEUGEN</span>
                         <div className="spec-value">ONEINDIG (CLOUD)</div>
                     </div>
                     <div className="spec-card">
-                        <span className="spec-label">UPTIME</span>
+                        <span className="spec-label">OPERATIONELE UPTIME</span>
                         <div className="spec-value">24/7/365</div>
                     </div>
                     <div className="spec-card">
-                        <span className="spec-label">LOCATIE</span>
+                        <span className="spec-label">FYSIEKE LOCATIE</span>
                         <div className="spec-value">IN JE BROEKZAK</div>
                     </div>
                 </div>
@@ -59,17 +60,17 @@ export default function MeetSjef() {
                 <div className="timeline">
                     <div className="timeline-item">
                         <div className="timeline-dot"></div>
-                        <div className="timeline-label mono">VERLEDEN</div>
+                        <div className="timeline-label mono">VERLEDEN (V1.0)</div>
                         <p className="timeline-text">Administratie was chaos. Bonnetjes in het dashboardkastje. Uren typen op zondagavond.</p>
                     </div>
                     <div className="timeline-item active">
                         <div className="timeline-dot"></div>
-                        <div className="timeline-label mono">HEDEN</div>
+                        <div className="timeline-label mono">HEDEN (V2.0)</div>
                         <p className="timeline-text">Sjef luistert mee. Eén druk op de knop. Geregeld voor je thuis bent.</p>
                     </div>
                     <div className="timeline-item">
                         <div className="timeline-dot"></div>
-                        <div className="timeline-label mono">TOEKOMST</div>
+                        <div className="timeline-label mono">TOEKOMST (V3.0)</div>
                         <p className="timeline-text">Jij bouwt. Ik regel de rest.</p>
                     </div>
                 </div>
@@ -78,7 +79,8 @@ export default function MeetSjef() {
             {/* SECTIE 5: DE BELOFTE (Closing Statement) */}
             <section className="promise-section">
                 <div className="promise-content">
-                    <span className="promise-quote">"IK BEN HET GEREEDSCHAP<br />DAT NOOIT BOT WORDT."</span>
+                    <span className="promise-quote">"KLAAR OM TE STARTEN?"</span>
+                    <br />
                     <Link href="/register" className="btn-sjef-primary">
                         HUUR SJEF IN
                     </Link>
