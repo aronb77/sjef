@@ -3,6 +3,8 @@ import { Eye, EyeOff } from 'lucide-react';
 import './login.css';
 import { login } from '../auth/actions';
 
+export const dynamic = 'force-dynamic';
+
 export default function LoginPage({ searchParams }) {
     return (
         <div className="login-container">
