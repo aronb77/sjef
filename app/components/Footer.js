@@ -44,8 +44,8 @@ export default function Footer() {
                     <div className="footer-col">
                         <h4 className="footer-header">Juridisch</h4>
                         <ul className="footer-list">
-                            <li className="footer-item"><Link href="/algemene-voorwaarden" className="footer-link">Algemene Voorwaarden</Link></li>
-                            <li className="footer-item"><Link href="/privacy" className="footer-link">Privacy Beleid</Link></li>
+                            <li className="footer-item"><Link href="/legal" className="footer-link">Algemene Voorwaarden</Link></li>
+                            <li className="footer-item"><Link href="/legal" className="footer-link">Privacy Beleid</Link></li>
                             <li className="footer-item"><Link href="/cookies" className="footer-link">Cookies</Link></li>
                         </ul>
                     </div>
@@ -66,7 +66,8 @@ export default function Footer() {
                 </div>
 
                 <div className="footer-bottom">
-                    &copy; {new Date().getFullYear()} Sjef AI. Gemaakt in Nederland 🇳🇱.
+                    &copy; {new Date().getFullYear()} Sjef AI. <br className="mobile-break" />
+                    Product van Vossen Design | KVK: 98579347 | Vossenkamp 24A Sint Jansklooster
                 </div>
             </div>
         </footer>
