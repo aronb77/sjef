@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '../../utils/supabase/server'
 
 export async function login(formData) {
     const supabase = await createClient()
@@ -22,7 +22,10 @@ export async function login(formData) {
     redirect('/dashboard')
 }
 
+import { headers } from 'next/headers'
+
 export async function signup(formData) {
+    const origin = headers().get('origin')
     const supabase = await createClient()
 
     const data = {
@@ -30,7 +33,12 @@ export async function signup(formData) {
         password: formData.get('password'),
     }
 
-    const { error } = await supabase.auth.signUp(data)
+    const { error } = await supabase.auth.signUp({
+        ...data,
+        options: {
+            emailRedirectTo: `${origin}/auth/callback`,
+        },
+    })
 
     if (error) {
         redirect('/register?error=true')

@@ -2,7 +2,7 @@
 
 import { CreditCard, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { STRIPE_PLANS } from "@/lib/stripe-config";
+import { STRIPE_PLANS } from "../../lib/stripe-config";
 
 export default function BuyCreditsButton() {
     const [loading, setLoading] = useState(false);

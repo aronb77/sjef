@@ -3,7 +3,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import './login.css';
 import { login } from '../auth/actions';
 
-export default function LoginPage() {
+export default function LoginPage({ searchParams }) {
     return (
         <div className="login-container">
             {/* LEFT COLUMN: BRANDING */}
@@ -29,6 +29,28 @@ export default function LoginPage() {
                     <div className="form-header">
                         <h2>Welkom terug.</h2>
                         <p className="subtext">Log in met je e-mailadres en wachtwoord.</p>
+
+                        {/* ALERTS */}
+                        {searchParams?.verified === 'true' && (
+                            <div className="alert alert-success">
+                                <span className="alert-icon">✓</span>
+                                <div className="alert-content">
+                                    <strong>Je e-mail is bevestigd!</strong>
+                                    <p>Log in om te starten.</p>
+                                </div>
+                            </div>
+                        )}
+
+                        {searchParams?.error === 'verification_failed' && (
+                            <div className="alert alert-error">
+                                <span className="alert-icon">!</span>
+                                <div className="alert-content">
+                                    <strong>Er ging iets mis.</strong>
+                                    <p>De link is ongeldig of verlopen. Probeer het opnieuw.</p>
+                                </div>
+                            </div>
+                        )}
+
                     </div>
 
 

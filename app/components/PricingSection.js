@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Check, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { STRIPE_PLANS } from "@/lib/stripe-config";
+import { STRIPE_PLANS } from "../../lib/stripe-config";
 import "./PricingSection.css";
 
 export default function PricingSection() {

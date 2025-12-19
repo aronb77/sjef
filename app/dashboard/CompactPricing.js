@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { STRIPE_PLANS } from "@/lib/stripe-config";
+import { STRIPE_PLANS } from "../../lib/stripe-config";
 import "./CompactPricing.css";
 
 export default function CompactPricing() {

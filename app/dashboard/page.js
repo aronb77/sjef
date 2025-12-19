@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '../../utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { logout } from '../auth/actions'
 import { FileText, Calendar, Clock, Sparkles, Mic, CreditCard } from 'lucide-react' // Import icons

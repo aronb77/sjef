@@ -1,0 +1,310 @@
+/* Meet Sjef - Cinematic Dark Mode Styles */
+.meet-sjef-container {
+    background-color: #050505;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Base Typography */
+.meet-sjef-container h1,
+.meet-sjef-container h2,
+.meet-sjef-container h3,
+.meet-sjef-container .big-text {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.meet-sjef-container .mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* SECTION 1: HERO */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('/neural_blueprint.png');
+    /* Ensure this is in public folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Dark overlay to make text pop */
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.75);
+    /* Darken the blueprint */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+    /* Electric Blue Glow */
+    animation: fadeUp 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+.hero-subtext {
+    font-size: 1.25rem;
+    color: #F97316;
+    /* Safety Orange */
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #F97316;
+    /* Cursor */
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+/* SECTION 2: MANIFEST */
+.manifest-section {
+    padding: 6rem 2rem;
+    background-color: #0a0a0a;
+    border-top: 1px solid #333;
+}
+
+.manifest-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #2563EB;
+    /* Electric Blue */
+    margin-bottom: 2rem;
+    border-left: 5px solid #F97316;
+    padding-left: 1.5rem;
+}
+
+.manifest-text {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+}
+
+/* SECTION 3: SPECS */
+.specs-section {
+    padding: 6rem 2rem;
+    background-color: #050505;
+    position: relative;
+}
+
+/* Grid Design Background */
+.specs-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.spec-card {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid #333;
+    padding: 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.spec-card:hover {
+    transform: translateY(-5px);
+    border-color: #F97316;
+}
+
+.spec-label {
+    display: block;
+    color: #64748B;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.spec-value {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* SECTION 4: TIMELINE */
+.timeline-section {
+    padding: 6rem 2rem;
+    background-color: #0a0a0a;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 2px solid #333;
+    padding-left: 3rem;
+}
+
+.timeline-item {
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -3.6rem;
+    top: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #333;
+    border-radius: 50%;
+    border: 2px solid #0a0a0a;
+}
+
+.timeline-item.active .timeline-dot {
+    background: #F97316;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+}
+
+.timeline-label {
+    font-size: 1.1rem;
+    color: #2563EB;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.timeline-text {
+    font-size: 1.25rem;
+    color: #e2e8f0;
+}
+
+/* SECTION 5: PROMISE */
+.promise-section {
+    padding: 8rem 2rem;
+    text-align: center;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+    position: relative;
+}
+
+.promise-quote {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 3rem;
+    display: block;
+    line-height: 1.2;
+}
+
+.btn-sjef-primary {
+    display: inline-block;
+    background-color: #F97316;
+    /* Safety Orange */
+    color: white;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+}
+
+.btn-sjef-primary:hover {
+    background-color: #ea580c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(249, 115, 22, 0.6);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #F97316;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtext {
+        font-size: 1rem;
+        white-space: normal;
+        animation: none;
+        border: none;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .promise-quote {
+        font-size: 2rem;
+    }
+}
