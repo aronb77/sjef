@@ -41,7 +41,7 @@ export function QuickBuyButton() {
     return (
         <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-900" onClick={handleBuy} disabled={loading}>
             <Plus className="h-4 w-4 mr-2" />
-            {loading ? 'Laden...' : 'Credits kopen (+)'}
+            {loading ? 'Laden...' : 'Credits Bijkopen (+)'}
         </Button>
     )
 }

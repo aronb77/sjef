@@ -5,7 +5,8 @@ import { login } from '../auth/actions';
 
 export const dynamic = 'force-dynamic';
 
-export default function LoginPage({ searchParams }) {
+export default async function LoginPage(props) {
+    const searchParams = await props.searchParams;
     return (
         <div className="login-container">
             {/* LEFT COLUMN: BRANDING */}

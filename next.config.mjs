@@ -12,6 +12,16 @@ const nextConfig = {
         destination: '/legal?tab=privacy',
         permanent: true,
       },
+      {
+        source: '/login',
+        destination: 'https://dashboard.sjef.ai/login',
+        permanent: true,
+      },
+      {
+        source: '/register',
+        destination: 'https://dashboard.sjef.ai/login?view=sign-up',
+        permanent: true,
+      },
     ];
   },
 };
