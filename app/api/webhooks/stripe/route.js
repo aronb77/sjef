@@ -45,26 +45,28 @@ export async function POST(req) {
         // 1. Identify User and Product
         const customerEmail = session.customer_details?.email;
         const amountTotal = session.amount_total; // In cents
-
-        // Simple logic: Map price amount to credits (You could also use metadata from Stripe Price/Product)
-        // Example: 1900 = 60 credits, 2900 = 80 credits, etc.
-        // For now, let's assume a default or calculate. 
-        // Ideally, pass 'credits' in the Stripe Session metadata metadata: { credits: '80' }
+        const sessionMode = session.mode; // 'subscription' or 'payment'
 
         let credits = 0;
 
-        // Fallback logic if metadata isn't set, based on your pricing:
-        if (amountTotal === 1900) credits = 60; // Starter
-        else if (amountTotal === 2900) credits = 80; // Vakman
-        else if (amountTotal === 5900) credits = 250; // Aannemer
-        else if (amountTotal === 500) credits = 10; // Noodrantsoen
-        else if (amountTotal === 1900 && !credits) credits = 45; // Tankbeurt (conflict with Starter? Best to use Stripe metadata or Product IDs)
-        else if (amountTotal === 3900) credits = 100; // De Voorraad
-        else credits = 60; // Default fallback
-
-        // Override if metadata exists
+        // PRIORITY: Check metadata first
         if (session.metadata?.credits) {
             credits = parseInt(session.metadata.credits);
+        } else {
+            // FALLBACK: Logic if metadata isn't set
+            if (amountTotal === 1900) {
+                // Conflict: Starter (Sub) vs Tankbeurt (Pay)
+                if (sessionMode === 'subscription') {
+                    credits = 50; // Starter
+                } else {
+                    credits = 45; // Tankbeurt
+                }
+            }
+            else if (amountTotal === 2900) credits = 90; // Vakman
+            else if (amountTotal === 5900) credits = 250; // Aannemer
+            else if (amountTotal === 500) credits = 10; // Noodrantsoen
+            else if (amountTotal === 3900) credits = 100; // De Voorraad
+            else credits = 50; // Default fallback
         }
 
         console.log(`Processing order for ${customerEmail}. Amount: ${amountTotal}. Credits: ${credits}`);

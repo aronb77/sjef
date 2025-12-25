@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function POST(req) {
     try {
         const body = await req.json();
-        const { priceId, quantity = 1, mode = 'payment' } = body;
+        const { priceId, quantity = 1, mode = 'payment', credits, planName } = body;
 
         if (!priceId) {
             return new NextResponse('Missing priceId', { status: 400 });
@@ -26,6 +26,8 @@ export async function POST(req) {
             ],
             metadata: {
                 product_type: 'license_voucher', // Flag for webhook
+                credits: credits ? credits.toString() : null,
+                plan_name: planName || null,
             },
             success_url: `${origin}/dashboard?success=true`,
             cancel_url: `${origin}/#pricing?canceled=true`,

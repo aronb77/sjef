@@ -13,7 +13,7 @@ export function QuickBuyButton() {
         try {
             // Defaulting to a small pack or specific plan for 'Quick Buy'
             // Let's assume 'tank' (Tankbeurt) is a good default
-            const plan = STRIPE_PLANS?.tank || { priceId: 'price_1QO...', mode: 'payment' }
+            const plan = STRIPE_PLANS?.tank || { priceId: 'price_1QO...', mode: 'payment', credits: 45, name: 'Tankbeurt' }
 
             // NOTE: In a real app we'd verify STRIPE_PLANS import. 
             // If strict import fails, we might need to hardcode or adjust path.
@@ -23,7 +23,9 @@ export function QuickBuyButton() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     priceId: plan.priceId,
-                    mode: plan.mode
+                    mode: plan.mode,
+                    credits: plan.credits,
+                    planName: plan.name
                 }),
             });
 

@@ -21,7 +21,9 @@ export default function PricingSection() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     priceId: plan.priceId,
-                    mode: plan.mode
+                    mode: plan.mode,
+                    credits: plan.credits, // Pass credits as metadata source of truth
+                    planName: plan.name    // Pass plan name for reference
                 }),
             });
 

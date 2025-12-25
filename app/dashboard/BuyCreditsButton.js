@@ -18,7 +18,9 @@ export default function BuyCreditsButton() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     priceId: plan.priceId,
-                    mode: plan.mode
+                    mode: plan.mode,
+                    credits: plan.credits,
+                    planName: plan.name
                 }),
             });
 
